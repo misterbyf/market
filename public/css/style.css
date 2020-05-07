@@ -1,0 +1,46 @@
+.wrap {
+    background: #fff;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.content {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+.site-header {
+    height: auto;
+    padding: 10px 0;
+}
+
+/*  MODEL */
+
+.model-button {
+    margin-left: 10px;
+}
+
+
+/* NAV */
+
+.site-nav {
+    width: 300px;
+    min-height: 100vh;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    z-index: 999999;
+    padding: 10px;
+    transition: all ease 1s;
+}
+
+
+

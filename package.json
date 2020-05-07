@@ -1,0 +1,17 @@
+{
+  "name": "myshop",
+  "version": "1.0.0",
+  "description": "shop on nodejs",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Bogdan Yaskevych",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "pug": "^2.0.4"
+  }
+}

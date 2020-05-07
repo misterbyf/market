@@ -1,0 +1,19 @@
+div(class="col col-md-4")
+    div(class="card mb-4 shadow-sm")
+        a(href="models?id=" + val['id'])
+            div(class="card-header")
+                h4(class="card-title pricing-card-title text-center") #{val["name"]}
+            div(class="card-body")
+                img(
+                    src="image/" + val["image"]
+                    class="card-img-top rounded-sm"
+                )          
+                h4(class="my-0 font-weight-normal text-center") #{val["cost"].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&")} uah
+                br
+        div(class="text-center")
+            button(
+                    class="btn btn-lg btn-block btn-primary add-to-cart"
+                    data-models_id = val["id"]                    
+                ) to cart
+
+
