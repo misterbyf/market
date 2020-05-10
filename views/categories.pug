@@ -1,20 +1,20 @@
 include header.pug
 
 div(class="wrap")
-    div(class="content")
-        header(class="site-header")
-            include site_header.pug
+  div(class="content")
+      header(class="site-header")
+          include site_header.pug
 
-        div(class="container")
-            div(class="row")
-                div(class="col col-md-12 text-center")
-                    h2 #{categories[0]["category"]}
-                each val, index in models
-                    include cart.pug
-            br
-            br       
-            div #{categories[0]["description"]}
+      div(class="container")
+          div(class="row")
+              div(class="col col-md-12 text-center")
+                  h2 #{categories[0]["category"]}
+              each val, index in models
+                  include cart.pug
+          br
+          br       
+          div #{categories[0]["description"]}
 
 
-        include nav.pug
-    include footer.pug
+      include nav.pug
+  include footer.pug

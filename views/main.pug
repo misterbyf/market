@@ -1,7 +1,25 @@
 include header.pug
 
 div(class="wrap")
-    div(class="content")
-        header(class="site-header")
-            include site_header.pug
-    
+  div(class="content")
+      header(class="site-header")
+          include site_header.pug
+
+      div(class="container")
+          div(class="row")
+              each category, indexCategory in description
+                  div(class="col col-lg-12")
+                      h2
+                          a(
+                              href="/categories?id=" + category["id"]
+                          )   #{category["category"]}
+
+                  each val, index in models
+                      if category["id"] == val["category"]
+                          include cart.pug
+
+  include nav.pug
+  include footer.pug
+
+
+  

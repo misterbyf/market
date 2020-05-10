@@ -1,0 +1,75 @@
+include header.pug
+
+div(class="wrap")
+  div(class='content')
+      header(class="site-header")
+          include site_header_order.pug
+      
+      div(class="conteiner")
+          div(class="row")
+              div(class="col-sm-3 col-md-6")
+                  h3(class="cart-header") Cart
+                  div(id="cart-nav")
+              div(class="col-sm-5 offset-sm-2 col-md-6 offset-md-0")
+                  h3(class="order-header") Create order
+                  div(class="col")
+                      form(id="shop-order", class="needs-validation", action="")
+                          div(class="mb-3")
+                              label(for="username")  Name
+                              input(
+                                  class="form-control",
+                                  type="text",
+                                  id="username",
+                                  placeholder="Enter your name"
+                                  )
+                          div(class="mb-3")
+                              label(for="phone")  Phone
+                              input(
+                                  class="form-control",
+                                  type="text",
+                                  id="phone",
+                                  placeholder="Enter your phone"
+                                  )
+                          div(class="mb-3")
+                              label(for="email") Email
+                                  span(class="text-muted")  (Optional)
+                              input(
+                                  class="form-control",
+                                  type="text",
+                                  id="email",
+                                  placeholder="mail@example.com"
+                                  )
+                          div(class="mb-3")
+                              label(for="adress")  Adress
+                              input(
+                                  class="form-control",
+                                  type="text",
+                                  id="adress",
+                                  placeholder="where are you"
+                                  )
+                          div(class="mb-3 form-check")                         
+                              input(
+                                  type="checkbox",
+                                  class="form-check-input",
+                                  id="rule",
+                                  value="1"
+                                  )   
+                              label(for="rule" class="form-check-label") Check me                    
+                          div(class="mb-3 text-right")
+                              button(class="btn btn-primary", type="submit") Finish order
+  include footer.pug
+  script(src="js/order.js")
+
+                                  
+
+
+
+
+
+      //- <div class="mb-3">
+      //-   <label for="email">Email <span class="text-muted">(Optional)</span></label>
+      //-   <input type="email" class="form-control" id="email" placeholder="you@example.com">
+      //-   <div class="invalid-feedback">
+      //-     Please enter a valid email address for shipping updates.
+      //-   </div>
+      //- </div>

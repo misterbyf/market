@@ -1,26 +1,26 @@
 include header.pug
 
 div(class="wrap")
-    div(class="content")
-        header(class="site-header")
-            include site_header.pug
+	div(class="content")
+			header(class="site-header")
+					include site_header.pug
 
-        div(class="container")
-            div(class="row")
-                div(class="col col-md-12")
-                    h2(class="panel-title")  #{models[0]["name"]}
-                div(class="col col-md-4")
-                    img(
-                        src="image/" + models[0]["image"] 
-                        class="img-fluid img-thumbnail"
-                    )
-                div(class="col col-md-7")
-                    p #{models[0]['description']}
-                    span(class="success") Цена: #{models[0]["cost"].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&")} uah
-                    button(
-                        class="btn btn-primary add-to-cart btn-lg model-button"
-                        data-models_id = models[0]["id"]
-                    ) to cart
+			div(class="container")
+					div(class="row")
+							div(class="col col-md-12")
+									h2(class="panel-title")  #{models[0]["name"]}
+							div(class="col col-md-4")
+									img(
+											src="image/" + models[0]["image"] 
+											class="img-fluid img-thumbnail"
+									)
+							div(class="col col-md-7")
+									p #{models[0]['description']}
+									span(class="success") Цена: #{models[0]["cost"].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&")} uah
+									button(
+											class="btn btn-primary add-to-cart btn-lg model-button"
+											data-models_id = models[0]["id"]
+									) to cart
 
-        include nav.pug
+			include nav.pug
 include footer.pug
