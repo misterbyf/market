@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.set('view engine', 'pug');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: '10141998q',
   database: 'market',
 });
 
@@ -81,8 +82,6 @@ app.get('/categories', (req, res) => {
 
 
 app.get('/models', (req, res) => {
-  console.log(req.query.id);
-
   connection.query(
       'SELECT * FROM models where id=' + req.query.id,
       (err, result) => {
@@ -121,6 +120,61 @@ app.post('/get-models-info', (req, res) => {
     res.send('0');
   }
 });
+
+
+app.post('/finish-order', (req, res) => {
+  if(req.body.key != 0) {
+    let key = Object.keys(req.body.key);
+    connection.query('SELECT id, name, cost FROM models where id IN (' + key.join(',') + ')', 
+    (err, result) => {
+      if(err) throw(err);
+      sendMailer(req.body, result).catch(console.error);
+      res.send('1');
+    })
+  } else {
+    res.send('0');
+  }
+});
+
+
+const sendMailer = async(data, result) => {
+  let res = `<h2>Order in SHOP</h2>`;
+  let total = 0;
+  for (let i = 0; i < result.length; i++) {
+    res += `<p>${result[i]['name']} - ${data.key[result[i]['id']]} - ${result[i]['cost'] * data.key[result[i]['id']]}</p>`;
+    total += result[i]['cost'] * data.key[result[i]['id']];
+  }
+  res += `<hr>`;
+  res += `Total ${total} uah`;
+  res += `<hr>Name: ${data.username}`;
+  res += `<hr>Phone: ${data.phone}`;
+  res += `<hr>Adress: ${data.adress}`;
+  res += `<hr>Email: ${data.email}`;
+  
+  let testAccount = await nodemailer.createTestAccount();
+
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: testAccount.user, // generated ethereal user
+      pass: testAccount.pass // generated ethereal password
+    }
+  });
+
+  let info = await transporter.sendMail({
+    from: `misterbyf@gmail.com`,
+    to: `misterbyf@gmail.com, ${data.email}`,
+    subject: `Shop order`,
+    text: `Your order`,
+    html: res,
+  });
+  console.log(`MessageSent: ${info.messageId}`);
+  console.log(`PreviewSent: ${nodemailer.getTestMessageUrl(info)}`);
+}
+
+
 app.get('/order', (_req, res) => {
   res.render('order');
 });
